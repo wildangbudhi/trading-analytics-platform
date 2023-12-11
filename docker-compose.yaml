@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+  redis:
+    image: redis:7.2.3-alpine
+    container_name: redis
+    hostname: redis
+    ports:
+      - 6379:6379
+
+  postgres:
+    image: postgres:14-alpine
+    container_name: pgsqldb
+    hostname: pgsqldb
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./apps/dbmigration/:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_PASSWORD=s3cr3t123
+      - POSTGRES_USER=wildangbudhi
+      - POSTGRES_DB=analyticsdb
+  
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    hostname: metabase
+    ports:
+      - 3000:3000
+    environment:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=metabase
+      - MB_DB_PORT=5432
+      - MB_DB_USER=wildangbudhi
+      - MB_DB_PASS=s3cr3t123
+      - MB_DB_HOST=pgsqldb
