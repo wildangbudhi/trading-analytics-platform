@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS public.silver__cftc__commitment_of_traders (
+    surr_key varchar primary key,
     date date,
     exchange varchar,
     data_type varchar,
