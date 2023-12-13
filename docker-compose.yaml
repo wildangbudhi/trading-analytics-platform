@@ -40,6 +40,14 @@ services:
       - MB_DB_PASS=s3cr3t123
       - MB_DB_HOST=pgsqldb
   
+  flower:
+    image: mher/flower:0.9.7
+    command: ['flower', '--broker=redis://redis:6379/0', '--port=5555']
+    ports:
+      - 5555:5555
+    depends_on:
+      - redis
+  
   scheduler:
     restart: always
     build:

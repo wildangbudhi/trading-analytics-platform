@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import calendar
 import time
 import re
-from sqlalchemy import create_engine 
 from sqlalchemy.sql import text
 import logging
 
@@ -13,12 +12,12 @@ from utils import Server
 def scrape_cot_task( server: Server ):
     
     try:
+        logging.info(f"[Scrape COT] Task Starting")
         scrape_cot( server=server, url='https://www.cftc.gov/dea/futures/deacmesf.htm' )
         scrape_cot( server=server, url='https://www.cftc.gov/dea/futures/deanybtsf.htm' )
-    except:
-        return False
-    
-    return True
+        logging.info(f"[Scrape COT] Task Done")
+    except Exception as e:
+        raise Exception( f"[Scrape COT] Task Done - {str(e)}" )
 
 def scrape_cot( server: Server, url: str):
 
