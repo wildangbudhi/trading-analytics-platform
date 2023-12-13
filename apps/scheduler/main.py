@@ -33,11 +33,11 @@ def submit_task( name: str ):
     logging.info( f"[Scheduler] Submit Task {name}" )
     celery_app.send_task( name=name )
 
-# schedule.every().day.at("05:00", "Asia/Jakarta").do( submit_task, name='cot_data_pipeline' )
-# schedule.every().day.at("05:00", "Asia/Jakarta").do( submit_task, name='economics_data_pipeline' )
+schedule.every().day.at("05:00", "Asia/Jakarta").do( submit_task, name='cot_data_pipeline' )
+schedule.every().day.at("05:00", "Asia/Jakarta").do( submit_task, name='economics_data_pipeline' )
 
-schedule.every(180).seconds.do( submit_task, name='cot_data_pipeline' )
-schedule.every(180).seconds.do( submit_task, name='economics_data_pipeline' )
+# schedule.every(180).seconds.do( submit_task, name='cot_data_pipeline' )
+# schedule.every(180).seconds.do( submit_task, name='economics_data_pipeline' )
 
 while True:
     schedule.run_pending()
