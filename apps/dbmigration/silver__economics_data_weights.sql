@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS public.silver__economics_data_weights (
     country_code varchar,
     metrics varchar,
-    weight double precision,
+    weight double precision
 );
 
 CREATE INDEX IF NOT EXISTS silver__edw__1__idx ON public.silver__economics_data_weights(country_code);
