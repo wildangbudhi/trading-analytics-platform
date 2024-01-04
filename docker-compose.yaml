@@ -24,6 +24,7 @@ services:
       - POSTGRES_PASSWORD=s3cr3t123
       - POSTGRES_USER=wildangbudhi
       - POSTGRES_DB=analyticsdb
+    # user: "502:20"
   
   metabase:
     restart: always
