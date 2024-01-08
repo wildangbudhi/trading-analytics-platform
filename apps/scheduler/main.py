@@ -38,6 +38,7 @@ def submit_task( name: str ):
 
 schedule.every().hour.at(":00").do( submit_task, name='cot_data_pipeline' )
 schedule.every().hour.at(":00").do( submit_task, name='economics_data_pipeline' )
+schedule.every().hour.at(":00").do( submit_task, name='investing_technical_data' )
 
 while True:
     schedule.run_pending()

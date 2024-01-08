@@ -9,6 +9,8 @@ services:
     hostname: redis
     ports:
       - 6379:6379
+    volumes:
+      - ./data/redis:/data
 
   postgres:
     restart: always
